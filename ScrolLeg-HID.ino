@@ -10,14 +10,6 @@
 
 #include <avr/pgmspace.h>
 
-
-/**
- * WT12 Setting
- * Will run on setup()
- */
-const char wt12_init_0[] PROGMEM = "SET BT NAME ScrolLeg";
-const char wt12_init_1[] PROGMEM = "SET BT PAIR *";
-
 /**
  * Up/Down button pin numbers
  */
@@ -27,16 +19,27 @@ const char wt12_init_1[] PROGMEM = "SET BT PAIR *";
  * WT12 Reset pin connection
  */
 #define WT12_RESET    7
+
+
 /**
- * Number of flash commands to run on chip at startup
+ * WT12 Setting
+ * Will run on setup()
  */
-#define NUM_INIT_MSG  2
+const char wt12_init_0[] PROGMEM = "SET BT NAME ScrolLeg";
+const char wt12_init_1[] PROGMEM = "SET BT CLASS 00540";
+const char wt12_init_2[] PROGMEM = "SET BT SSP 3 0";
+const char wt12_init_3[] PROGMEM = "SET CONTROL AUTOCALL 0011 500 HID";
+
+#define NUM_INIT_MSG  4
+
 
 // http://forum.arduino.cc/index.php?topic=272313.0
 // Initialize flash commands
 PGM_P const string_table[]  PROGMEM {
     wt12_init_0,
-    wt12_init_1
+    wt12_init_1,
+    wt12_init_2,
+    wt12_init_3
 };
 
 char buffer[60]; // used for printing these init messages
